@@ -1,4 +1,10 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
 part of 'post.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
 
 Post _$PostFromJson(Map<String, dynamic> json) => Post(
       userId: (json['userId'] as num).toInt(),
@@ -13,4 +19,3 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
     };
-

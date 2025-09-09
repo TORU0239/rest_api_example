@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Ensure network works in all build variants (debug/profile already include it) -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="rest_api_example"
         android:name="${applicationName}"

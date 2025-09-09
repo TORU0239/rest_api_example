@@ -3,11 +3,11 @@ import 'package:retrofit/retrofit.dart';
 
 import '../models/post.dart';
 
-part 'api_client.g.dart';
+part 'api_client_impl.dart';
 
 @RestApi(baseUrl: 'https://jsonplaceholder.typicode.com')
 abstract class ApiClient {
-  factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+  factory ApiClient(Dio dio, {String? baseUrl}) = _ApiClient;
 
   @GET('/posts')
   Future<List<Post>> getPosts();
@@ -15,4 +15,3 @@ abstract class ApiClient {
   @GET('/posts/{id}')
   Future<Post> getPost(@Path('id') int id);
 }
-

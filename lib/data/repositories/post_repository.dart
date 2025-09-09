@@ -4,9 +4,25 @@ import '../models/post.dart';
 import '../network/api_client.dart';
 
 class PostRepository {
-  PostRepository({Dio? dio, ApiClient? apiClient})
-      : _dio = dio ?? Dio(),
-        _api = apiClient ?? ApiClient(dio ?? Dio());
+  factory PostRepository({Dio? dio, ApiClient? apiClient}) {
+    final dioInstance = dio ?? Dio();
+    // Set sane defaults and a friendly User-Agent; some public APIs 403 unknown clients
+    dioInstance.options.headers.addAll({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+      'User-Agent': 'rest_api_example/1.0 (Dio HTTP Client)',
+    });
+    // Add basic logging to aid debugging
+    if (!dioInstance.interceptors.any((i) => i is LogInterceptor)) {
+      dioInstance.interceptors.add(
+        LogInterceptor(requestBody: true, responseBody: true),
+      );
+    }
+    final apiInstance = apiClient ?? ApiClient(dioInstance);
+    return PostRepository._(dioInstance, apiInstance);
+  }
+
+  PostRepository._(this._dio, this._api);
 
   final Dio _dio;
   final ApiClient _api;
@@ -17,4 +33,3 @@ class PostRepository {
   Future<List<Post>> fetchPosts() => _api.getPosts();
   Future<Post> fetchPost(int id) => _api.getPost(id);
 }
-

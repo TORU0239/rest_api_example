@@ -25,4 +25,3 @@ class _ApiClient implements ApiClient {
     return Post.fromJson(data);
   }
 }
-
