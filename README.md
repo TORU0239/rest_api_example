@@ -11,6 +11,7 @@ Quick Start
 1) Install deps: `flutter pub get`
 2) Generate model code: `flutter pub run build_runner build --delete-conflicting-outputs`
 3) Run the app: `flutter run`
+4) Troubleshooting: see Error Handling below for Dio exceptions.
 
 How It’s Organized
 - Data layer: JSON models (`json_serializable` + `build_runner`), Retrofit API interface (`@RestApi`) with a handwritten implementation, repository wrapper
@@ -23,5 +24,13 @@ API
 
 Notes
 - API client is handwritten (no `retrofit_generator`). Models use `json_serializable` and require build_runner.
+
+## Error Handling
+- Centralized Dio error mapping converts low-level `DioException` into friendly messages (e.g., "No internet connection", "Forbidden", "Server error").
+- Implementation lives in `lib/data/network/network_exceptions.dart` and is applied in `PostRepository`.
+- Repository wraps calls and throws `NetworkException` with a clean `toString()` so UI shows human‑readable errors in both Bloc and Provider paths.
+
+Developer Notes
+- Shared `Dio` instance is set up in `PostRepository` with default JSON headers, a helpful `User-Agent`, and a `LogInterceptor` for diagnostics.
 
 A new Flutter project.

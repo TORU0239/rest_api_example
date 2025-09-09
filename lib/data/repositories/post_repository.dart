@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import '../models/post.dart';
 import '../network/api_client.dart';
+import '../network/network_exceptions.dart';
 
 class PostRepository {
   factory PostRepository({Dio? dio, ApiClient? apiClient}) {
@@ -30,6 +31,23 @@ class PostRepository {
   Dio get dio => _dio;
   ApiClient get api => _api;
 
-  Future<List<Post>> fetchPosts() => _api.getPosts();
-  Future<Post> fetchPost(int id) => _api.getPost(id);
+  Future<List<Post>> fetchPosts() async {
+    try {
+      return await _api.getPosts();
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (_) {
+      throw const NetworkException('Unexpected error occurred.');
+    }
+  }
+
+  Future<Post> fetchPost(int id) async {
+    try {
+      return await _api.getPost(id);
+    } on DioException catch (e) {
+      throw mapDioException(e);
+    } catch (_) {
+      throw const NetworkException('Unexpected error occurred.');
+    }
+  }
 }
