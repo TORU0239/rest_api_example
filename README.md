@@ -1,11 +1,11 @@
 # rest_api_example
 # REST API Example (Flutter)
 
-A minimal Flutter app showing how to consume a REST API with Retrofit + Dio and manage state with both Bloc and Provider.
+A minimal Flutter app showing how to consume a REST API with Retrofit + Dio and manage state with Bloc, Provider, and Riverpod — all backed by the same repository layer.
 
 What’s Inside
 - Retrofit + Dio: Type‑safe HTTP calls
-- Two implementations: Bloc tab and Provider tab
+- Three implementations: Bloc, Provider, and Riverpod tabs using a shared repository
 
 Quick Start
 1) Install deps: `flutter pub get`
@@ -15,8 +15,8 @@ Quick Start
 
 How It’s Organized
 - Data layer: JSON models (`json_serializable` + `build_runner`), Retrofit API interface (`@RestApi`) with a handwritten implementation, repository wrapper
-- UI layer: Posts list and Post detail — implemented twice (Bloc and Provider)
-- Navigation: Bottom bar switches Bloc/Provider; tapping a post opens detail (fetches by ID)
+- UI layer: Posts list and Post detail — implemented three times (Bloc, Provider, Riverpod)
+- Navigation: Bottom bar switches between the three tabs; tapping a post opens detail (fetches by ID)
 
 API
 - Base URL: https://jsonplaceholder.typicode.com
