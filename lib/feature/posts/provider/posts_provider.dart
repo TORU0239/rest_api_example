@@ -30,4 +30,3 @@ class PostsProvider extends ChangeNotifier {
     }
   }
 }
-

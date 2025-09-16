@@ -30,9 +30,11 @@ class PostDetailPageBloc extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(post.title, style: Theme.of(context).textTheme.titleLarge),
+                      Text(post.title,
+                          style: Theme.of(context).textTheme.titleLarge),
                       const SizedBox(height: 12),
-                      Text(post.body, style: Theme.of(context).textTheme.bodyLarge),
+                      Text(post.body,
+                          style: Theme.of(context).textTheme.bodyLarge),
                     ],
                   ),
                 );
@@ -45,4 +47,3 @@ class PostDetailPageBloc extends StatelessWidget {
     );
   }
 }
-

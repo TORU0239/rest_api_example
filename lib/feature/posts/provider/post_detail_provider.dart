@@ -30,4 +30,3 @@ class PostDetailProvider extends ChangeNotifier {
     }
   }
 }
-

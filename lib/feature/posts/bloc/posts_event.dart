@@ -10,4 +10,3 @@ sealed class PostsEvent extends Equatable {
 class LoadPosts extends PostsEvent {
   const LoadPosts();
 }
-

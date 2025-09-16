@@ -31,4 +31,3 @@ class PostsError extends PostsState {
   @override
   List<Object?> get props => [message];
 }
-

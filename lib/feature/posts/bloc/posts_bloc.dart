@@ -21,4 +21,3 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     }
   }
 }
-

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'feature/posts/view/posts_page_bloc.dart';
 import 'feature/posts/view/posts_page_provider.dart';
+import 'feature/posts/view/posts_page_riverpod.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -35,6 +37,7 @@ class _HomeState extends State<_Home> {
     final pages = [
       const PostsPageBloc(),
       const PostsPageProvider(),
+      const PostsPageRiverpod(),
     ];
     return Scaffold(
       body: pages[_index],
@@ -43,6 +46,8 @@ class _HomeState extends State<_Home> {
         destinations: const [
           NavigationDestination(icon: Icon(Icons.data_object), label: 'Bloc'),
           NavigationDestination(icon: Icon(Icons.person), label: 'Provider'),
+          NavigationDestination(
+              icon: Icon(Icons.donut_small), label: 'Riverpod'),
         ],
         onDestinationSelected: (i) => setState(() => _index = i),
       ),

@@ -31,4 +31,3 @@ class PostDetailError extends PostDetailState {
   @override
   List<Object?> get props => [message];
 }
-

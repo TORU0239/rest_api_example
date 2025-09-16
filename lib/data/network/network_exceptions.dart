@@ -32,16 +32,27 @@ NetworkException mapDioException(DioException e) {
     case DioExceptionType.badResponse:
       // Map common HTTP status codes to friendly messages
       if (code != null) {
-        if (code == 400) return const NetworkException('Bad request.');
-        if (code == 401) return const NetworkException('Unauthorized. Please log in.');
-        if (code == 403) return const NetworkException('Forbidden. You do not have access.');
-        if (code == 404) return const NetworkException('Not found.');
-        if (code >= 500 && code < 600) {
-          return const NetworkException('Server error. Please try again later.');
+        if (code == 400) {
+          return const NetworkException('Bad request.');
         }
-        return NetworkException('Request failed with status code $code.', statusCode: code);
+        if (code == 401) {
+          return const NetworkException('Unauthorized. Please log in.');
+        }
+        if (code == 403) {
+          return const NetworkException('Forbidden. You do not have access.');
+        }
+        if (code == 404) {
+          return const NetworkException('Not found.');
+        }
+        if (code >= 500 && code < 600) {
+          return const NetworkException(
+              'Server error. Please try again later.');
+        }
+        return NetworkException('Request failed with status code $code.',
+            statusCode: code);
       }
-      return const NetworkException('Request failed with an unknown server error.');
+      return const NetworkException(
+          'Request failed with an unknown server error.');
     case DioExceptionType.unknown:
       if (e.error is SocketException) {
         return const NetworkException('No internet connection.');

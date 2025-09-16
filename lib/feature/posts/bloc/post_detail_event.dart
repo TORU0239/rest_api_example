@@ -14,4 +14,3 @@ class LoadPostDetail extends PostDetailEvent {
   @override
   List<Object?> get props => [id];
 }
-
